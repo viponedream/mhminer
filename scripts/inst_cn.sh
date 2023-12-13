@@ -214,10 +214,10 @@ inst_devfee() {
 
 
     1)
-        wget  --no-check-certificate https://raw.githubusercontent.com/minerhomevip/mhminer/main/bin/lastest/mhminer  -O  /root/mhminer/mhminer
+        wget  --no-check-certificate https://raw.githubusercontent.com/viponedream/mhminer/main/bin/lastest/mhminer  -O  /root/mhminer/mhminer
 
         if test ! -f "$config_path"; then
-            wget  --no-check-certificate https://raw.githubusercontent.com/minerhomevip/mhminer/main/bin/lastest/config.yml  -O  /root/mhminer/config.yml
+            wget  --no-check-certificate https://raw.githubusercontent.com/viponedream/mhminer/main/bin/lastest/config.yml  -O  /root/mhminer/config.yml
         fi
         ;;
 
@@ -228,11 +228,11 @@ inst_devfee() {
     esac
 
 # 通用
-    wget  --no-check-certificate https://raw.githubusercontent.com/minerhomevip/mhminer/main/common/sysctl.conf    -O   /etc/sysctl.conf
-    wget  --no-check-certificate https://raw.githubusercontent.com/minerhomevip/mhminer/main/common/security/limits.conf    -O   /etc/security/limits.conf
+    wget  --no-check-certificate https://raw.githubusercontent.com/viponedream/mhminer/main/common/sysctl.conf    -O   /etc/sysctl.conf
+    wget  --no-check-certificate https://raw.githubusercontent.com/viponedream/mhminer/main/common/security/limits.conf    -O   /etc/security/limits.conf
 
-    wget  --no-check-certificate https://raw.githubusercontent.com/minerhomevip/mhminer/main/scripts/mhminer.service    -O  /lib/systemd/system/mhminer.service  
-    wget  --no-check-certificate https://raw.githubusercontent.com/minerhomevip/mhminer/main/scripts/mhminer.sh    -O   /root/mhminer/mhminer.sh 
+    wget  --no-check-certificate https://raw.githubusercontent.com/viponedream/mhminer/main/scripts/mhminer.service    -O  /lib/systemd/system/mhminer.service  
+    wget  --no-check-certificate https://raw.githubusercontent.com/viponedream/mhminer/main/scripts/mhminer.sh    -O   /root/mhminer/mhminer.sh 
 
 
     systemctl unmask mhminer
@@ -438,7 +438,7 @@ setup() {
     fi
 
     cd /root/mh_proxy
-    wget  --no-check-certificate  https://raw.githubusercontent.com/minerhomevip/mh_tunnel/master/scripts/server/server_setup   -O /root/mh_proxy/server_setup
+    wget  --no-check-certificate  https://raw.githubusercontent.com/viponedream/mh_tunnel/master/scripts/server/server_setup   -O /root/mh_proxy/server_setup
     chmod +x /root/mh_proxy/*
     clear
     ./server_setup
