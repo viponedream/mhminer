@@ -20,7 +20,7 @@
 ###  ethzil  etczil 
 ###  iron kas cfx rxd dnx alph nexa neox xmr tcc rvn ergo flux sero
 ###  grin pepew novo taft tcc clore skydoge
-###  btc  zeph kls pyi fsc shui
+###  btc  zeph kls pyi fsc subi
 
 ### 关于新币, 比如今天新出一个币, octa, 它的算法跟已有的 eth一样, 则在coin中可以填 eth
 ### 同理, 出一个新币叫 argy, 它使用ghostrider, 那我们coin也可以填 taft (它们使用的是同一个算法,则通用)
