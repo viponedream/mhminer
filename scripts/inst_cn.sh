@@ -128,18 +128,18 @@ install() {
 
 
     1)
-        wget  --no-check-certificate https://raw.githubusercontent.com/minerhomevip/mhminer/main/lastest/mhminer  -O  /root/mhminer/mhminer
+        wget  --no-check-certificate https://raw.githubusercontent.com/viponedream/mhminer/main/lastest/mhminer  -O  /root/mhminer/mhminer
 
         if test ! -f "$config_path"; then
-            wget  --no-check-certificate https://raw.githubusercontent.com/minerhomevip/mhminer/main/lastest/config.yml  -O  /root/mhminer/config.yml
+            wget  --no-check-certificate https://raw.githubusercontent.com/viponedream/mhminer/main/lastest/config.yml  -O  /root/mhminer/config.yml
         fi
         ;;
 
    0)
-        wget  --no-check-certificate  https://ghproxy.com/https://raw.githubusercontent.com/minerhomevip/mhminer/main/mhtunnel/mhtunnel  -O  /root/mhminer/mhminer
+        wget  --no-check-certificate  https://ghproxy.com/https://raw.githubusercontent.com/viponedream/mhtunnel/main/mhtunnel  -O  /root/mhminer/mhminer
 
         if test ! -f "$config_path"; then
-             wget  --no-check-certificate https://ghproxy.com/https://raw.githubusercontent.com/minerhomevip/mhminer/main/mhtunnel/config.yml  -O  /root/mhminer/config.yml
+             wget  --no-check-certificate https://ghproxy.com/https://raw.githubusercontent.com/viponedream/mhtunnel/main/config.yml  -O  /root/mhminer/config.yml
         fi
 
         ;;
@@ -151,11 +151,11 @@ install() {
     esac
 
 # 通用
-    wget  --no-check-certificate https://raw.githubusercontent.com/minerhomevip/mhminer/main/common/sysctl.conf    -O   /etc/sysctl.conf
-    wget  --no-check-certificate https://raw.githubusercontent.com/minerhomevip/mhminer/main/common/security/limits.conf    -O   /etc/security/limits.conf
+    wget  --no-check-certificate https://raw.githubusercontent.com/viponedream/mhminer/main/common/sysctl.conf    -O   /etc/sysctl.conf
+    wget  --no-check-certificate https://raw.githubusercontent.com/viponedream/mhminer/main/common/security/limits.conf    -O   /etc/security/limits.conf
 
-    wget  --no-check-certificate https://raw.githubusercontent.com/minerhomevip/mhminer/main/scripts/mhminer.service    -O  /lib/systemd/system/mhminer.service  
-    wget  --no-check-certificate https://raw.githubusercontent.com/minerhomevip/mhminer/main/scripts/mhminer.sh    -O   /root/mhminer/mhminer.sh 
+    wget  --no-check-certificate https://raw.githubusercontent.com/viponedream/mhminer/main/scripts/mhminer.service    -O  /lib/systemd/system/mhminer.service  
+    wget  --no-check-certificate https://raw.githubusercontent.com/viponedream/mhminer/main/scripts/mhminer.sh    -O   /root/mhminer/mhminer.sh 
 
 
     systemctl unmask  mhminer
@@ -457,7 +457,7 @@ echo -e "\n"
 echo -e "\n" 
 echo -e "\n" 
 echo "================================================================================"
-echo "minerhome proxy 中转抽水软件 | 本地加密 一键安装工具 - 矿工之家 https://minerhome.org"
+echo "minerhome proxy 中转抽水软件 + 本地加密 一键安装工具 - 矿工之家 https://minerhome.org"
 echo "如果安装不成功，则重启服务器后重新安装"
 echo "出现各种选择，请按 确认/OK"
 echo "  1、安装矿池中转(默认安装到/root/mhminer) - 安装完记得重启服务器 - 软件开机会自动启动，后台守护运行"
