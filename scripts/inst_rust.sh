@@ -1,7 +1,7 @@
 #!/bin/bash
 
 VERSION="3.9.0"
-DOWNLOAD_HOST="https://github.com/viponedream/mhminer/raw/main/bin/rustminer/"
+DOWNLOAD_HOST="https://github.com/viponedream/mhminer/raw/main/bin/rustminer"
 
 
 ORIGIN_EXEC="rustminer"
@@ -585,6 +585,8 @@ installapp() {
     echo "${m_31}"
 
     wget -P $PATH_RUST "${DOWNLOAD_HOST}/${ORIGIN_EXEC}" -O "${PATH_RUST}/${PATH_EXEC}" 1>/dev/null
+
+
 
     filterResult $? "${m_32}"
 
