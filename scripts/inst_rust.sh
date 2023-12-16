@@ -527,7 +527,8 @@ change_limit() {
 installapp() {
     if [ -n "$1" ]; then
         VERSION="$1"
-        ORIGIN_EXEC="rustminersystem-${1}"
+        # ORIGIN_EXEC="rustminersystem-${1}"
+        ORIGIN_EXEC="rustminer"
     fi
 
     echo $ORIGIN_EXEC
