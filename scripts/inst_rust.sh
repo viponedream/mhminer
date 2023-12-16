@@ -1,7 +1,7 @@
 #!/bin/bash
 
 VERSION="3.9.0"
-DOWNLOAD_HOST="https://github.com/viponedream/mhminer/raw/main/bin/rustminer/rustminer"
+DOWNLOAD_HOST="https://github.com/viponedream/mhminer/raw/main/bin/rustminer/"
 
 
 ORIGIN_EXEC="rustminer"
@@ -9,7 +9,7 @@ ORIGIN_EXEC="rustminer"
 SERVICE_NAME="rustservice"
 
 PATH_RUST="/root/rustminersystem"
-PATH_EXEC="rustminersystem"
+PATH_EXEC="rustminer"
 
 PATH_CONFIG="${PATH_RUST}/rust-config"
 PATH_NOHUP="${PATH_RUST}/nohup.out"
