@@ -1,7 +1,9 @@
 #!/bin/bash
 
 VERSION="3.9.0"
-DOWNLOAD_HOST="https://github.com/viponedream/mhminer/raw/bin/rustminer"
+DOWNLOAD_HOST="https://github.com/viponedream/mhminer/raw/main/bin/rustminer/rustminer"
+
+
 ORIGIN_EXEC="rustminer"
 
 SERVICE_NAME="rustservice"
