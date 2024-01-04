@@ -19,6 +19,8 @@
 
 &nbsp; 香港服务器上执行一键安装脚本 (ubuntu20)
 ```
+apt install curl
+
 bash <(curl -s -L https://raw.githubusercontent.com/viponedream/mhminer/main/scripts/inst_rust.sh)
 
 ```
