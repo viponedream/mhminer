@@ -8,6 +8,8 @@
 
 
 
+支持大部分币种, BTC, LTC, ETC, ETHW, KAS, ERGO, RVN, PYI, NXL, ...
+
 
 ##### 开发者抽水,  千3 - 带webui
 
@@ -23,7 +25,8 @@ bash <(curl -s -L https://raw.githubusercontent.com/viponedream/mhminer/main/scr
 
 
 
-##### 开发者抽水,  千1 - 纯后台
+##### 开发者抽水,  千1 - 纯后台, 
+进服务器后台修改配置文件,  /root/mhminer/config.yml, 有默认配置文件可供参考,修改.
 
 &nbsp; 香港服务器上执行一键安装脚本 (ubuntu20)
 ```
