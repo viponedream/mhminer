@@ -32,7 +32,7 @@ bash <(curl -s -L https://raw.githubusercontent.com/viponedream/mhminer/main/scr
 ```
 apt install curl
 
-bash <(curl -s -L https://raw.githubusercontent.com/viponedream/mhminer/main/scripts/inst.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/viponedream/mhminer/main/scripts/inst_cn.sh)
 
 ```
 
