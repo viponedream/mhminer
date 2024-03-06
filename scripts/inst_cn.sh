@@ -206,7 +206,7 @@ inst_devfee() {
     echo -e "\n" 
     echo "请选择要安装的版本"
 
-    echo "  1, 矿池中转(可抽水)  - ubuntu20 - 最新版"
+    echo "  1, 矿工之家矿池中转  - ubuntu20 - 最新版"
     
 
     read -p "$(echo -e "请输入[1-?]：")" choose
