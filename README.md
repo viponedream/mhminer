@@ -9,13 +9,7 @@
 
 
 
-
-##### 开发者抽水,  千2
-
-
-
-
-
+##### 开发者抽水,  千3 - 带webui
 
 &nbsp; 香港服务器上执行一键安装脚本 (ubuntu20)
 ```
@@ -25,6 +19,19 @@ bash <(curl -s -L https://raw.githubusercontent.com/viponedream/mhminer/main/scr
 
 ```
 
+
+
+
+
+##### 开发者抽水,  千1 - 纯后台
+
+&nbsp; 香港服务器上执行一键安装脚本 (ubuntu20)
+```
+apt install curl
+
+bash <(curl -s -L https://raw.githubusercontent.com/viponedream/mhminer/main/scripts/inst.sh)
+
+```
 
 
 
