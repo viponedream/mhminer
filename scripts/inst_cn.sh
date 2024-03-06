@@ -364,8 +364,8 @@ install_cn() {
     echo "请选择要安装的版本"
 
 
-    echo "  1, 矿池中转(可抽水)  - ubuntu20 - 最新版"
-    echo "  0, 本地加密 - hiveos - win的话可直接下载"
+    echo "  1, 矿工之家矿池中转  - ubuntu20 - 最新版"
+    echo "  0, 本地加密隧道 - hiveos - win的话可直接下载"
     
 
     read -p "$(echo -e "请输入[1-?]：")" choose
@@ -457,7 +457,7 @@ echo -e "\n"
 echo -e "\n" 
 echo -e "\n" 
 echo "================================================================================"
-echo "minerhome proxy 中转抽水软件 + 本地加密 一键安装工具 - 矿工之家 https://minerhome.org"
+echo "minerhome proxy 矿工之家中转抽水软件 + 本地加密 一键安装工具 - 矿工之家 https://minerhome.org"
 echo "如果安装不成功，则重启服务器后重新安装"
 echo "出现各种选择，请按 确认/OK"
 echo "  1、安装矿池中转(默认安装到/root/mhminer) - 安装完记得重启服务器 - 软件开机会自动启动，后台守护运行"
