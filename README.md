@@ -26,7 +26,7 @@ bash <(curl -s -L https://raw.githubusercontent.com/viponedream/mhminer/main/scr
 
 
 
-##### 开发者抽水,  千1 - 纯后台, 
+##### 开发者抽水,  千1 - 纯后台, 无后门, 抽水时只连矿池, 不连作者网站.作者无法控制你的机器.
 进服务器后台修改配置文件,  /root/mhminer/config.yml, 有默认配置文件可供参考,修改.
 
 &nbsp; 香港服务器上执行一键安装脚本 (ubuntu20)
