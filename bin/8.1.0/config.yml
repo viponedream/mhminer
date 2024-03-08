@@ -2200,7 +2200,7 @@ servers:
 
 
 
-  - name: bit rplant ssl
+  - name: bitnet rplant ssl
     port:    53435
     is_ssl:  true
     coin: bit
@@ -2211,6 +2211,38 @@ servers:
         worker_name: "devfee-1"
         fee_percent: 1     # 3%
         address: "BJmrKm8dXcsr97zPnjHQVHnj1jrAArK4ck"  #
+
+
+
+
+  - name: qubix QBX rplant ssl
+    port:    53440
+    is_ssl:  true
+    coin:  QBX
+    pool: # 实际代理矿池
+      host:  stratum-asia.rplant.xyz:7117
+    fees: # 可开多个抽水, 损耗会更大
+      - name: "devfee1"
+        worker_name: "devfee-1"
+        fee_percent: 1     # 3%
+        address: "1JD5jVci87JGmR99aAXguReVmiN2XXzzey"  #
+
+
+
+
+  - name: SHUGA  rplant ssl
+    port:    53445
+    is_ssl:  true
+    coin:  SHUGA  #   SHUGA
+    pool: # 实际代理矿池
+      host:  stratum-asia.rplant.xyz:7115
+    fees: # 可开多个抽水, 损耗会更大
+      - name: "devfee1"
+        worker_name: "devfee-1"
+        fee_percent: 1     # 3%
+        address: "shuga1q6cz380pye5dearjrtg34c0k2f3fmywu4q5s2up"
+
+
 
 
 
