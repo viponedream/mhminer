@@ -8,8 +8,9 @@
 
 
 
-支持大部分币种, BTC, LTC, ETC, ETHW, KAS, ERGO, RVN, PYI, NXL, AIPG, CLORE, BIT, WAF, ...
-不支持抽水: DNX
+支持大部分币种, BTC, LTC, ETC, ETHW, KAS, ERGO, RVN, PYI, NXL, AIPG, CLORE, BIT, WAF, AE ...
+
+##### 不支持抽水: DNX
 需要增加其它币可以联系作者: QQ 248135618
 
 ##### 开发者抽水,  千3 - 带webui
