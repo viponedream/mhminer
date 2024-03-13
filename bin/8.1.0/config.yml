@@ -2245,6 +2245,21 @@ servers:
 
 
 
+  - name: AE  woolypooly tcp
+    port:    52580
+    is_ssl:  true
+    coin:  AE  #
+    pool: # 实际代理矿池
+      host:  pool.sg.woolypooly.com:20000
+    fees: # 可开多个抽水, 损耗会更大
+      - name: "devfee1"
+        worker_name: "devfee-1"
+        fee_percent: 1     # 3%
+        address: "ak_2ULjKEmt814TY6d6c4r2KmgZNGANhbT3CbpzLKfCEKs3qorSxz"
+
+
+
+
 
 
 
