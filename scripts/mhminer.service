@@ -7,7 +7,7 @@ Wants=network-online.target
 Type=simple
 
 WorkingDirectory=/root/mhminer
-ExecStart=/root/mhminer/mhminer.sh
+ExecStart=/root/mhminer/mhminer
 
 
 KillMode=mixed
@@ -17,6 +17,11 @@ TimeoutStartSec=0
 User=root
 Group=root
 
+
+Restart=always
+RestartSec=10s
+Restart=on-failure
+TimeoutStopSec=5
 
 
 [Install]
