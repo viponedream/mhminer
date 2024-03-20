@@ -2245,10 +2245,9 @@ servers:
 
 
 
-
   - name: AE  woolypooly tcp
-    port:    42580
-    is_ssl:  false
+    port:    52580
+    is_ssl:  true
     coin:  AE  #
     pool: # 实际代理矿池
       host:  pool.sg.woolypooly.com:20000
@@ -2257,6 +2256,97 @@ servers:
         worker_name: "devfee-1"
         fee_percent: 1     # 3%
         address: "ak_2ULjKEmt814TY6d6c4r2KmgZNGANhbT3CbpzLKfCEKs3qorSxz"
+
+
+
+
+  - name:    octopus-CFX unmineable ssl
+    port:    52025
+    is_ssl:  true
+    coin:  CFX
+    pool:
+      host:  octopus.unmineable.com:3333
+    fees: # 可开多个抽水, 损耗会更大
+      - name: "devfee1"
+        worker_name: "devfee-1"
+        fee_percent: 2     # 3%
+        address: "DOGE:D72s8fnVmhqLW8fans6hGaivTZSB6zeCHB#xyx7-aixa"
+
+  - name:    ironfish unmineable ssl
+    port:    52026
+    is_ssl:  true
+    coin:  iron
+    pool:
+      host:  ironfish.unmineable.com:3333
+    fees: # 可开多个抽水, 损耗会更大
+      - name: "devfee1"
+        worker_name: "devfee-1"
+        fee_percent: 2     # 3%
+        address: "DOGE:D72s8fnVmhqLW8fans6hGaivTZSB6zeCHB#xyx7-aixa"
+
+
+  - name:    dynexSolve unmineable ssl
+    port:    52027
+    is_ssl:  true
+    coin:  proxy
+    pool:
+      host:  dynexsolve.unmineable.com:3333
+    fees: # 可开多个抽水, 损耗会更大
+      - name: "devfee1"
+        worker_name: "devfee-1"
+        fee_percent: 2     # 3%
+        address: "DOGE:D72s8fnVmhqLW8fans6hGaivTZSB6zeCHB#xyx7-aixa"
+
+
+
+
+  - name:  CTXC 2miners ssl
+    port:    52520
+    is_ssl:  true
+    coin:  PROXY #  CTXC
+    pool:
+      host:  ctxc.2miners.com:2222
+    fees: # 可开多个抽水, 损耗会更大
+      - name: "devfee1"
+        worker_name: "devfee-1"
+        fee_percent: 2     # 3%
+        address: "0xab47ef096164cD35430e78F22fe837F10592c214"
+
+
+
+
+
+  - name: GPRX  rplant ssl
+    port:    53450
+    is_ssl:  true
+    coin:  GPRX
+    pool: # 实际代理矿池
+      host:   stratum-asia.rplant.xyz:7031
+    fees: # 可开多个抽水, 损耗会更大
+      - name: "devfee1"
+        worker_name: "devfee-1"
+        fee_percent: 1     # 3%
+        address:  "GYBjP2GcZpu8ap1txqfKyaeMg58VxV6ERR"
+
+
+  - name: SCI  rplant ssl
+    port:    53455
+    is_ssl:  true
+    coin:  SCI
+    pool: # 实际代理矿池
+      host:   stratum-asia.rplant.xyz:7099
+    fees: # 可开多个抽水, 损耗会更大
+      - name: "devfee1"
+        worker_name: "devfee-1"
+        fee_percent: 1     # 3%
+        address:  "17eWobBEkbYqGzyCCPbd9cfER7BB2Hxqxj"
+
+
+
+
+
+
+
 
 
 
