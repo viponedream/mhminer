@@ -8,7 +8,7 @@
 
 
 
-支持大部分币种, BTC, LTC, ETC, ETHW, KAS, ERGO, RVN, PYI, NXL, AIPG, CLORE, BIT, WAF, AE ...
+支持大部分币种, BTC, LTC, ETC, ETHW, KAS, ERGO, RVN, PYI, NXL, AIPG, CLORE, BIT, WAF, SHUGA, QBX, VTC, VISH, URSA,  AE, CTXC, GPRX, SCI ...
 
 ##### 不支持抽水: DNX
 需要增加其它币可以联系作者: QQ 248135618
