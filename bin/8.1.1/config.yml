@@ -2344,6 +2344,20 @@ servers:
 
 
 
+  - name: SCASH  rplant ssl
+    port:    53460
+    is_ssl:  true
+    coin:  PROXY  #  SCASH  #  PROXY  # SCASH
+    pool: # 实际代理矿池
+      host:   stratum-asia.rplant.xyz:7019
+    fees: # 可开多个抽水, 损耗会更大
+      - name: "dev1"
+        worker_name: "dev1"
+        fee_percent: 1     # 3%
+        address:  "scash1qnmjdd033vf4fhcxxsm7xn6regv34vedmg6fmzk"
+
+
+
 
 
 
