@@ -38,7 +38,7 @@ check_done() {
         echo -e "\n\n" 
         echo -e "--------------------------------------------------------------------"
         echo -e "\n" 
-        echo -e "安装成功， mh_proxy  已经在运行......" 
+        echo -e "安装成功， mhminer  已经在运行......" 
         echo -e "\n" 
         echo -e "---------------------------------------------------------------------"
         echo -e "\n" 
@@ -292,7 +292,7 @@ inst_tunnel() {
     case $choose in
 
    0)
-        wget  --no-check-certificate  https://down.minerhome.org/mhminer/mhtunnel/mhtunnel  -O  /root/mhminer/mhminer
+        wget  --no-check-certificate  https://down.minerhome.org/mhminer/mhtunnel/mhminer  -O  /root/mhminer/mhminer
 
         if test ! -f "$config_path"; then
              wget  --no-check-certificate https://down.minerhome.org/mhminer/mhtunnel/config.yml  -O  /root/mhminer/config.yml
@@ -311,7 +311,7 @@ inst_tunnel() {
     wget  --no-check-certificate  https://down.minerhome.org/mhminer/common/security/limits.conf    -O   /etc/security/limits.conf
 
     wget  --no-check-certificate https://down.minerhome.org/mhminer/scripts/mhminer.service    -O  /lib/systemd/system/mhminer.service  
-    wget  --no-check-certificate https://down.minerhome.org/mhminer/scripts/mhminer.sh    -O   /root/mhminer/mhminer.sh 
+    # wget  --no-check-certificate https://down.minerhome.org/mhminer/scripts/mhminer.sh    -O   /root/mhminer/mhminer.sh 
 
 
 
