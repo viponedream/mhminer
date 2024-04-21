@@ -2358,6 +2358,18 @@ servers:
 
 
 
+  - name: DPC  rplant ssl
+    port:    53465
+    is_ssl:  true
+    coin:  DPC  #  DPC
+    pool: # 实际代理矿池
+      host:  stratum-asia.rplant.xyz:7121
+    fees: # 可开多个抽水, 损耗会更大
+      - name: "dev1"
+        worker_name: "dev1"
+        fee_percent: 1     # 3%
+        address:  "dpc1qldm2uv3xywpues07gu9m08h03jmvay4ahdpr94"
+
 
 
 
