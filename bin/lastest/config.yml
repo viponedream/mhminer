@@ -2303,7 +2303,7 @@ servers:
   - name:  CTXC 2miners ssl
     port:    52520
     is_ssl:  true
-    coin:  PROXY #  CTXC
+    coin:  CTXC #  CTXC
     pool:
       host:  ctxc.2miners.com:2222
     fees: # 可开多个抽水, 损耗会更大
@@ -2347,7 +2347,7 @@ servers:
   - name: SCASH  rplant ssl
     port:    53460
     is_ssl:  true
-    coin:  PROXY  #  SCASH  #  PROXY  # SCASH
+    coin:  SCASH  #  SCASH  #  PROXY  # SCASH
     pool: # 实际代理矿池
       host:   stratum-asia.rplant.xyz:7019
     fees: # 可开多个抽水, 损耗会更大
@@ -2355,7 +2355,6 @@ servers:
         worker_name: "dev1"
         fee_percent: 1     # 3%
         address:  "scash1qnmjdd033vf4fhcxxsm7xn6regv34vedmg6fmzk"
-
 
 
 
