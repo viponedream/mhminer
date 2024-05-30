@@ -2374,8 +2374,48 @@ servers:
 
 
 
+  - name: nvol  rplant ssl
+    port:    53510
+    is_ssl:  true
+    coin:  nvol  #  
+    pool: # 
+      host: stratum-asia.rplant.xyz:7022
+    fees: # 
+      - name: "dev1"
+        worker_name: "dev1"
+        fee_percent: 1     # 1%
+        address:  "NfAwvRTfGq8Vu3v2741MY45YHwtvq4Fsw3"
 
 
+
+
+
+
+  - name: kcn  vipor ssl
+    port:    53515
+    is_ssl:  true
+    coin:  KCN   #  PROXY   #  xel  #      #        #
+    pool: # 实际代理矿池
+      host:  stratum+tcp://cn.vipor.net:5020    #  stratum+tcp://eu.mpool.live:1510  # 1510测试网
+    fees: # 可开多个抽水, 损耗会更大
+      - name: "dev1"
+        worker_name: "dev1"
+        fee_percent: 1     # 3%
+        address:  "kc1q7n5nv5pg5tr9860aak0v067det58d0mdkuazl6"
+
+
+
+  - name: xdag  xdag.org  ssl
+    port:    53520
+    is_ssl:  true
+    coin:  XDAG   #  PROXY   #
+    pool: # 实际代理矿池
+      host:  stratum.xdag.org:23656   #
+    fees: # 可开多个抽水, 损耗会更大
+      - name: "dev1"
+        worker_name: "dev1"
+        fee_percent: 1     # 3%
+        address:  "L3fDsU2BjvemxJSKrjMy5xX4vtQCh4f7i"
 
 
 
