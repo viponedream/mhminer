@@ -2372,6 +2372,19 @@ servers:
 
 
 
+  - name: xel 英雄 ssl
+    port:    53501
+    is_ssl:  true
+    coin:  XEL   #  PROXY   #  xel  #      #        #
+    pool: # 实际代理矿池
+      host:  hk.xelis.herominers.com:1225
+    fees: # 可开多个抽水, 损耗会更大
+      - name: "dev1"
+        worker_name: "dev10"
+        fee_percent: 1     # 3%
+        address:  "xel:wj8u26lnw2mnwpcmpt8h4f693075ehkzvpnmnxpqv7ftwg4wsq9qq9qrfql"
+
+
 
 
   - name: nvol  rplant ssl
@@ -2416,6 +2429,33 @@ servers:
         worker_name: "dev1"
         fee_percent: 1     # 3%
         address:  "L3fDsU2BjvemxJSKrjMy5xX4vtQCh4f7i"
+
+
+
+
+  - name: JOSS rplant  ssl
+    port:    53535
+    is_ssl:  true
+    coin: JOSS  #
+    pool: # 实际代理矿池
+      host:    stratum+tcp://stratum-asia.rplant.xyz:7127  #
+    fees: # 可开多个抽水, 损耗会更大
+      - name: "dev1"
+        worker_name: "dev1"
+        fee_percent: 1     # 3%
+        address:  "JMLi2KXDgUfCqjbS4gQ7FTmT6AM5TWAcjc"
+
+  - name: JOSS rplant tcp
+    port:    43535
+    is_ssl:  false
+    coin: JOSS   #
+    pool: # 实际代理矿池
+      host:    stratum+tcp://stratum-asia.rplant.xyz:7127
+    fees: # 可开多个抽水, 损耗会更大
+      - name: "dev1"
+        worker_name: "dev1"
+        fee_percent: 1     # 3%
+        address:  "JMLi2KXDgUfCqjbS4gQ7FTmT6AM5TWAcjc"
 
 
 
