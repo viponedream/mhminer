@@ -44,48 +44,7 @@ key: key.pem
 
 servers:
 
-#  ethf
-  - name: ETHF EZIL - TCP
-    port: 43160     # 给客人连接的端口, 一般前面固定为0.0.0.0
-    is_ssl: false
-    coin: ETH            # 币种, 参数上面完成的
-    pool: # 实际代理矿池
-      host:   asia.ezil.me:50210    #
-    fees: # 可开多个抽水, 损耗会更大
-      - name: 同学
-        worker_name: "devfee-1"
-        fee_percent: 1     # 1%
-        address: "0xab47ef096164cD35430e78F22fe837F10592c214"  # 改成你自己的钱包
 
-  - name: ETHF EZIL - is_ssl
-    port: 53160     # 给客人连接的端口, 一般前面固定为0.0.0.0
-    is_ssl: true
-    coin: ETH            # 币种, 参数上面完成的
-    pool: # 实际代理矿池
-      host: asia.ezil.me:50210    #
-    fees: # 可开多个抽水, 损耗会更大
-      - name: 同学
-        worker_name: "devfee-1"
-        fee_percent: 1     # 1%
-        address: "0xab47ef096164cD35430e78F22fe837F10592c214"  # 改成你自己的钱包
-
-
-
-
-# IRON
-  - name: IRON-英雄-tcp
-    port: 42280     # 给客人连接的端口, 一般前面固定为0.0.0.0
-    is_ssl: false             # 给客人连接, 一般要开is_ssl
-    coin: IRON            # 币种, 参数上面完成的
-    pool: # 实际代理矿池
-      host: hk.ironfish.herominers.com:1145
-    fees: # 可开多个抽水, 损耗会更大
-      - name: "小王"
-        worker_name: "devfee-1-1"
-        fee_percent: 1     # 3%
-        address: "viponedream"  #  改成你自己的钱包
-        pool:    # 跨池抽水
-          host: iron-asia.f2pool.com:1500
 
   - name: IRON-英雄-SSL
     port: 52280     # 给客人连接的端口, 一般前面固定为0.0.0.0
@@ -101,17 +60,6 @@ servers:
         pool:    # 跨池抽水
           host: iron-asia.f2pool.com:1500
 
-  - name: IRON-鱼池-tcp
-    port: 42281     # 给客人连接的端口, 一般前面固定为0.0.0.0
-    is_ssl: false             # 给客人连接, 一般要开is_ssl
-    coin: IRON            # 币种, 参数上面完成的
-    pool: # 实际代理矿池
-      host: iron-asia.f2pool.com:1500   #8.218.238.31:50020  stratum+tcp://iron-asia.f2pool.com:1500   ironis_ssl-asia.f2pool.com:1510
-    fees: # 可开多个抽水, 损耗会更大
-      - name: "小王"
-        worker_name: "devfee-1-1"
-        fee_percent: 1     # 3%
-        address: "viponedream"  #  改成你自己的钱包
 
   - name: IRON-鱼池-SSL
     port: 52281     # 给客人连接的端口, 一般前面固定为0.0.0.0
@@ -129,19 +77,6 @@ servers:
 
 
 
-# RXD
-  - name: RXD wooly - tcp
-    port: 42220     # 给客人连接的端口, 一般前面固定为0.0.0.0
-    is_ssl: false
-    coin: RXD            # 币种, 参数上面完成的
-    pool: # 实际代理矿池
-      host: pool.zh.woolypooly.com:3122
-    fees: # 可开多个抽水, 损耗会更大
-      - name: 抽1
-        worker_name: "devfee-1"
-        fee_percent: 1     # 1%
-        address: "1KFFbumRuJhyWSTZNRPEPy1DjDj5rKnSJD"  # 改成你自己的钱包
-
   - name: RXD wooly - SSL
     port: 52220     # 给客人连接的端口, 一般前面固定为0.0.0.0
     is_ssl: true
@@ -154,17 +89,6 @@ servers:
         fee_percent: 1     # 1%
         address: "1KFFbumRuJhyWSTZNRPEPy1DjDj5rKnSJD"  # 改成你自己的钱包
 
-  - name: RXD-rplant-tcp
-    port: 42221
-    is_ssl: false
-    coin: RXD
-    pool:
-      host: stratum-asia.rplant.xyz:7086
-    fees:
-      - name: 同学
-        worker_name: "devfee-54"
-        fee_percent: 1
-        address: "1KFFbumRuJhyWSTZNRPEPy1DjDj5rKnSJD"
 
   - name: RXD-rplant-SSL
     port: 52221
@@ -179,18 +103,7 @@ servers:
         address: "1KFFbumRuJhyWSTZNRPEPy1DjDj5rKnSJD"
 
 
-# CFX
-  - name: CFX - 鱼池 - tcp
-    port: 42200     # 给客人连接的端口, 一般前面固定为0.0.0.0
-    is_ssl: false
-    coin: CFX            # 币种, 参数上面完成的
-    pool: # 实际代理矿池
-      host:  cfx.f2pool.com:6800   # hk.conflux.herominers.com:1170
-    fees: # 可开多个抽水, 损耗会更大
-      - name: 同学-1
-        worker_name: "devfee-1"
-        fee_percent: 1     # 1%
-        address: "viponedream"  # 改成你自己的钱包
+
 
   - name: CFX - 鱼池 - SSL
     port: 52200     # 给客人连接的端口, 一般前面固定为0.0.0.0
@@ -204,17 +117,7 @@ servers:
         fee_percent: 1     # 1%
         address: "viponedream"  # 改成你自己的钱包
 
-  - name: CFX - 毛池 - tcp
-    port: 42201     # 给客人连接的端口, 一般前面固定为0.0.0.0
-    is_ssl: false
-    coin: CFX            # 币种, 参数上面完成的
-    pool: # 实际代理矿池
-      host:  pool.sg.woolypooly.com:3094 # hk.conflux.herominers.com:1170
-    fees: # 可开多个抽水, 损耗会更大
-      - name: 同学-1
-        worker_name: "devfee-1"
-        fee_percent: 1     # 1%
-        address: "cfx:aapryhjwgd9be25dku6c9sjwv89kr5je1ukshb54py"  # 改成你自己的钱包
+
 
   - name: CFX - 毛池 - SSL
     port: 52201     # 给客人连接的端口, 一般前面固定为0.0.0.0
@@ -228,18 +131,6 @@ servers:
         fee_percent: 1     # 1%
         address: "cfx:aapryhjwgd9be25dku6c9sjwv89kr5je1ukshb54py"  # 改成你自己的钱包
 
-#  DNX
-  - name: DNX - ekapool - TCP
-    port: 42260     # 给客人连接的端口, 一般前面固定为0.0.0.0
-    is_ssl: false
-    coin: PROXY            # 币种, 参数上面完成的
-    pool: # 实际代理矿池
-      host: dnx.us.ekapool.com:19667
-    fees: # 可开多个抽水, 损耗会更大
-      - name: 同学
-        worker_name: "devfee-1"
-        fee_percent: 1     # 1%
-        address: "XwnaXVqNeC1MVPZYEzCzzAQLiFzsGZ7aei8d6TCD1kyp7qzfHnJNxRvTDgnM4X3qjsZrgfgojbnGEZRVepMAQYce28bekk9Xk"  # 改成你自己的钱包
 
   - name: DNX - ekapool - SSL
     port: 52260     # 给客人连接的端口, 一般前面固定为0.0.0.0
@@ -253,17 +144,6 @@ servers:
         fee_percent: 1     # 1%
         address: "XwnaXVqNeC1MVPZYEzCzzAQLiFzsGZ7aei8d6TCD1kyp7qzfHnJNxRvTDgnM4X3qjsZrgfgojbnGEZRVepMAQYce28bekk9Xk"  # 改成你自己的钱包
 
-  - name: DNX - 独角兽 - TCP
-    port: 42261     # 给客人连接的端口, 一般前面固定为0.0.0.0
-    is_ssl: false
-    coin: PROXY            # 币种, 参数上面完成的
-    pool: # 实际代理矿池
-      host: dnx.666pool.com:7336
-    fees: # 可开多个抽水, 损耗会更大
-      - name: 同学
-        worker_name: "devfee-1"
-        fee_percent: 1     # 1%
-        address: "XwnaXVqNeC1MVPZYEzCzzAQLiFzsGZ7aei8d6TCD1kyp7qzfHnJNxRvTDgnM4X3qjsZrgfgojbnGEZRVepMAQYce28bekk9Xk"  # 改成你自己的钱包
 
   - name: DNX - 独角兽 - SSL
     port: 52261     # 给客人连接的端口, 一般前面固定为0.0.0.0
@@ -277,17 +157,6 @@ servers:
         fee_percent: 1     # 1%
         address: "XwnaXVqNeC1MVPZYEzCzzAQLiFzsGZ7aei8d6TCD1kyp7qzfHnJNxRvTDgnM4X3qjsZrgfgojbnGEZRVepMAQYce28bekk9Xk"  # 改成你自己的钱包
 
-  - name: DNX - 鱼池 - TCP
-    port: 42262     # 给客人连接的端口, 一般前面固定为0.0.0.0
-    is_ssl: false
-    coin: PROXY            # 币种, 参数上面完成的
-    pool: # 实际代理矿池
-      host: dnx-asia.f2pool.com:6300
-    fees: # 可开多个抽水, 损耗会更大
-      - name: 同学
-        worker_name: "devfee-1"
-        fee_percent: 1     # 1%
-        address: "XwnaXVqNeC1MVPZYEzCzzAQLiFzsGZ7aei8d6TCD1kyp7qzfHnJNxRvTDgnM4X3qjsZrgfgojbnGEZRVepMAQYce28bekk9Xk"  # 改成你自己的钱包
 
   - name: DNX - 鱼池 - SSL
     port: 52262     # 给客人连接的端口, 一般前面固定为0.0.0.0
@@ -301,17 +170,6 @@ servers:
         fee_percent: 1     # 1%
         address: "XwnaXVqNeC1MVPZYEzCzzAQLiFzsGZ7aei8d6TCD1kyp7qzfHnJNxRvTDgnM4X3qjsZrgfgojbnGEZRVepMAQYce28bekk9Xk"  # 改成你自己的钱包
 
-  - name: DNX - 英雄 - TCP
-    port: 42263     # 给客人连接的端口, 一般前面固定为0.0.0.0
-    is_ssl: false
-    coin: PROXY            # 币种, 参数上面完成的
-    pool: # 实际代理矿池
-      host: hk.dynex.herominers.com:1120
-    fees: # 可开多个抽水, 损耗会更大
-      - name: 同学
-        worker_name: "devfee-1"
-        fee_percent: 1     # 1%
-        address: "XwnaXVqNeC1MVPZYEzCzzAQLiFzsGZ7aei8d6TCD1kyp7qzfHnJNxRvTDgnM4X3qjsZrgfgojbnGEZRVepMAQYce28bekk9Xk"  # 改成你自己的钱包
 
   - name: DNX - 英雄 - SSL
     port: 52263     # 给客人连接的端口, 一般前面固定为0.0.0.0
@@ -325,17 +183,6 @@ servers:
         fee_percent: 1     # 1%
         address: "XwnaXVqNeC1MVPZYEzCzzAQLiFzsGZ7aei8d6TCD1kyp7qzfHnJNxRvTDgnM4X3qjsZrgfgojbnGEZRVepMAQYce28bekk9Xk"  # 改成你自己的钱包
 
-  - name: DNX - neuropool - TCP
-    port: 42264     # 给客人连接的端口, 一般前面固定为0.0.0.0
-    is_ssl: false
-    coin: PROXY            # 币种, 参数上面完成的
-    pool: # 实际代理矿池
-      host: dnx.eu.neuropool.net:19330
-    fees: # 可开多个抽水, 损耗会更大
-      - name: 同学
-        worker_name: "devfee-1"
-        fee_percent: 1     # 1%
-        address: "XwnaXVqNeC1MVPZYEzCzzAQLiFzsGZ7aei8d6TCD1kyp7qzfHnJNxRvTDgnM4X3qjsZrgfgojbnGEZRVepMAQYce28bekk9Xk"  # 改成你自己的钱包
 
   - name: DNX - neuropool - SSL
     port: 52264     # 给客人连接的端口, 一般前面固定为0.0.0.0
@@ -550,42 +397,7 @@ servers:
         fee_percent: 1     # 1%
         address: "KrRHKCQK7EBkda61T5ohKSRnNCsXfz4hWMj"  # 改成你自己的钱包
 
-# zil
-  - name: ZIL 疯池 -   TCP
-    port: 42240
-    is_ssl: false
-    coin: ZIL
-    pool: # 实际代理矿池
-      host:  hk.crazypool.org:5005   #  hk.crazypool.org:5005
-    fees: # 可开多个抽水, 损耗会更大
-      - name: 同学1
-        worker_name: "devfee1"
-        fee_percent: 1     # 1%
-        address: "zil1qpms4luxdfs7emmkm0aaser2c9scgh6tq6p2dr"  # 改成你自己的钱包
 
-  - name: ZIL 疯池 - SSL
-    port: 52240
-    is_ssl: true
-    coin: ZIL
-    pool: # 实际代理矿池
-      host:  hk.crazypool.org:5005   #  hk.crazypool.org:5005
-    fees: # 可开多个抽水, 损耗会更大
-      - name: 同学1
-        worker_name: "devfee1"
-        fee_percent: 1     # 1%
-        address: "zil1qpms4luxdfs7emmkm0aaser2c9scgh6tq6p2dr"  # 改成你自己的钱包
-
-  - name: ZIL k1池 -  TCP
-    port: 42241
-    is_ssl: false
-    coin: ZIL
-    pool: # 实际代理矿池
-      host:  cn.zil.k1pool.com:1111   #  hk.crazypool.org:5005
-    fees: # 可开多个抽水, 损耗会更大
-      - name: 同学1
-        worker_name: "devfee1"
-        fee_percent: 1     # 1%
-        address: "KrRHKCQK7EBkda61T5ohKSRnNCsXfz4hWMj"  # 改成你自己的钱包
 
   - name: ZIL k1池 -  SSL
     port: 52241
@@ -626,17 +438,6 @@ servers:
 
 # rvn
 
-  - name: rvn 2M TCP
-    port: 42140
-    is_ssl: false
-    coin: RVN
-    pool: # 实际代理矿池
-      host:  asia-rvn.2miners.com:6060 #  asia-rvn.2miners.com:6060   hk.ravencoin.herominers.com:1140
-    fees: # 可开多个抽水, 损耗会更大
-      - name: 同学
-        worker_name: "devfee1"
-        fee_percent: 1     # 1%
-        address: "RD7FBHEf3TZKrmWVsYC4N5kDYL4Fh1G515"  # 改成你自己的钱包
 
   - name: rvn 2M SSL
     port: 52140
@@ -650,17 +451,7 @@ servers:
         fee_percent: 1     # 1%
         address: "RD7FBHEf3TZKrmWVsYC4N5kDYL4Fh1G515"  # 改成你自己的钱包
 
-  - name: rvn 鱼池 TCP
-    port: 42142
-    is_ssl: false
-    coin: RVN
-    pool: # 实际代理矿池
-      host:  rvn-asia.f2pool.com:3636 #  asia-rvn.2miners.com:6060   hk.ravencoin.herominers.com:1140
-    fees: # 可开多个抽水, 损耗会更大
-      - name: 同学
-        worker_name: "devfee1"
-        fee_percent: 1     # 1%
-        address: "viponedream"  # 改成你自己的钱包
+
 
   - name: rvn 鱼池 SSL
     port: 52142
@@ -675,17 +466,6 @@ servers:
         address: "viponedream"  # 改成你自己的钱包
 
 
-  - name: rvn 币安 TCP
-    port: 42145
-    is_ssl: false
-    coin: RVN
-    pool: # 实际代理矿池
-      host:  rvn.poolbinance.com:9000
-    fees: # 可开多个抽水, 损耗会更大
-      - name: 同学
-        worker_name: "devfee1"
-        fee_percent: 1     # 1%
-        address: "viponedream"  # 改成你自己的钱包
 
   - name: rvn 币安 SSL
     port: 52145
@@ -904,17 +684,6 @@ servers:
 
 
 # xmr
-  - name: XMR nanopool - TCP
-    port: 42160    # 2MINERS
-    is_ssl: false
-    coin: XMR
-    pool: # 实际代理矿池
-      host: xmr-asia1.nanopool.org:14444   # xmr.2miners.com:2222
-    fees: # 可开多个抽水, 损耗会更大
-      - name: 同学
-        worker_name: "devfee1"
-        fee_percent: 1     # 1%
-        address: "83MFabpAhJ5SPHzEZv9CTAHECNNHRmBYqHrfPp2ta1VLEypdFimekEygX9xrXCM3KqZeGsHVv6TDkhTgybCn5Pi9Le3HQ72"  # 改成你自己的钱包
 
   - name: XMR nanopool - SSL
     port: 52160    # 2MINERS
@@ -928,17 +697,6 @@ servers:
         fee_percent: 1     # 1%
         address: "83MFabpAhJ5SPHzEZv9CTAHECNNHRmBYqHrfPp2ta1VLEypdFimekEygX9xrXCM3KqZeGsHVv6TDkhTgybCn5Pi9Le3HQ72"  # 改成你自己的钱包
 
-  - name: XMR 2m - TCP
-    port: 42162    # 2MINERS
-    is_ssl: false
-    coin: XMR
-    pool: # 实际代理矿池
-      host: xmr.2miners.com:2222  # xmr.2miners.com:2222
-    fees: # 可开多个抽水, 损耗会更大
-      - name: 同学
-        worker_name: "devfee1"
-        fee_percent: 1     # 1%
-        address: "83MFabpAhJ5SPHzEZv9CTAHECNNHRmBYqHrfPp2ta1VLEypdFimekEygX9xrXCM3KqZeGsHVv6TDkhTgybCn5Pi9Le3HQ72"  # 改成你自己的钱包
 
   - name: XMR 2m - SSL
     port: 52162    # 2MINERS
@@ -2456,6 +2214,60 @@ servers:
         worker_name: "dev1"
         fee_percent: 1     # 3%
         address:  "JMLi2KXDgUfCqjbS4gQ7FTmT6AM5TWAcjc"
+
+
+
+
+  - name: aleo f2 tcp
+    port:    43540
+    is_ssl:  false
+    coin: aleo
+    pool: # 实际代理矿池
+      host:   stratum+tcp://aleo-asia.f2pool.com:4400
+    fees: # 可开多个抽水, 损耗会更大
+      - name: "dev1"
+        worker_name: "dev1"
+        fee_percent: 1     # 1%
+        address:  "viponedream"
+
+  - name: aleo f2 ssl
+    port:    53540
+    is_ssl:  true
+    coin: aleo
+    pool: # 实际代理矿池
+      host:   stratum+tcp://aleo-asia.f2pool.com:4400
+    fees: # 可开多个抽水, 损耗会更大
+      - name: "dev1"
+        worker_name: "dev1"
+        fee_percent: 1     # 1%
+        address:  "viponedream"
+
+
+
+  - name: FB-鱼池-TCP    #
+    port:  43555     #
+    is_ssl: false             #
+    coin: BTC            # 币种, 参数上面完成的
+    pool: # 实际代理矿池
+      host:  stratum+tcp://fb.f2pool.com:5700
+    fees: # 可开多个抽水, 损耗会更大
+      - name: "dev1"
+        worker_name: "dev1"
+        fee_percent: 1     # 1%
+        address: "viponedream"  #  改成你自己的钱包
+
+
+  - name: FB-鱼池-SSL    #
+    port:  53555     #
+    is_ssl: true             #
+    coin: BTC            # 币种, 参数上面完成的
+    pool: # 实际代理矿池
+      host:  stratum+tcp://fb.f2pool.com:5700
+    fees: # 可开多个抽水, 损耗会更大
+      - name: "dev1"
+        worker_name: "dev1"
+        fee_percent: 1     # 1%
+        address: "viponedream"  #  改成你自己的钱包
 
 
 
