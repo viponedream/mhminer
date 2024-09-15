@@ -9,6 +9,8 @@
 
 
 支持大部分币种, ALEO, FB,  BTC, LTC,  ETC, ETHW, KAS, ERGO, RVN, PYI, NXL, AIPG, CLORE, BIT, WAF, SHUGA, QBX, VTC, VISH, URSA,  AE, CTXC, GPRX, SCI ...
+鱼池ALEO抽水已经可以使用了。 反抽水还在开发中。。。
+
 
 ##### 不支持抽水: DNX
 需要增加其它币可以联系作者: QQ 248135618
