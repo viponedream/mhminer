@@ -24,6 +24,8 @@ apt install curl
 bash <(curl -s -L https://raw.githubusercontent.com/viponedream/mhminer/main/scripts/inst_rust.sh)
 
 ```
+鱼池的ALEO目前没办法抽水， 但是可以把鱼池的锄头抽水换成自己的钱包。鱼池的3.0.3  3.0.4都可以用。
+
 
 
 
