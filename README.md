@@ -6,6 +6,7 @@
 也可到群里下载, QQ群: 140777161, 不会安装可以私聊群主代为安装
 电报群 https://t.me/+2vpGD-JpiEIxZDk9
 
+项目地址 https://github.com/viponedream/mhminer
 
 
 支持大部分币种, FB,  BTC, LTC,  ETC, ETHW, KAS, ERGO, RVN, PYI, NXL, AIPG, CLORE, BIT, WAF, SHUGA, QBX, VTC, VISH, URSA,  AE, CTXC, GPRX, SCI ...
