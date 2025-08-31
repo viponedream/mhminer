@@ -282,7 +282,7 @@ start() {
             echo ""
             echo ""
             echo "|----------------------------------------------------------------|"
-            echo "程序启动成功, 版本号: ${VERSION}"
+            echo "程序启动成功"
             echo $http_t
             echo "后台访问地址:     ${http_h}$(get_ip):${port}"
             echo "默认用户名为      qzpm19kkx"
