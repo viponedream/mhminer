@@ -6,10 +6,13 @@
 也可到群里下载, QQ群: 413890394  , 不会安装可以私聊群主代为安装， 群主QQ: 248135618
 
 
-项目地址 https://github.com/viponedream/mhminer
-
-
+抽水中转项目地址 https://github.com/viponedream/mhminer
 支持大部分币种, FB,  BTC, LTC,  ETC, ETHW, KAS, ERGO, RVN, PYI, NXL, AIPG, CLORE, BIT, WAF, SHUGA, QBX, VTC, VISH, URSA,  AE, CTXC, GPRX, SCI ...
+
+可以搭配加密隧道使用，不怕查水表。 
+加密隧道项目   https://github.com/viponedream/mhtunnel
+只需把配置文件里面的 global_ip: ""  换为抽水服务器的IP即可。
+不明白可以联系群主QQ 248135618
 
 
 ##### 开发者抽水,  千3 - 带webui
