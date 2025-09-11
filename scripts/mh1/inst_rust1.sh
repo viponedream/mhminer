@@ -2,7 +2,7 @@
 
 
 VERSION="4.5.5"
-DOWNLOAD_HOST="https://github.com/viponedream/mhminer/raw/main/bin/rustminer1"
+DOWNLOAD_HOST="https://github.com/viponedream/mhminer/raw/main/bin/rustminer"
 
 
 ORIGIN_EXEC="rustminer1"
