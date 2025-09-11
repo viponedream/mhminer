@@ -9,8 +9,8 @@ ORIGIN_EXEC="rustminer"
 
 SERVICE_NAME="rustservice"
 
-PATH_RUST="/root/rustminer2"   # 安装目录，换目录即可，后面加上不同的数字
-PATH_EXEC="rustminer"          # 执行文件
+PATH_RUST="/root/rustminer2"    # 安装目录，换目录即可，后面加上不同的数字
+PATH_EXEC="rustminer"           # 执行文件
 
 PATH_CONFIG="${PATH_RUST}/rust-config"
 PATH_NOHUP="${PATH_RUST}/nohup.out"
