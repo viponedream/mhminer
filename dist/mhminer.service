@@ -1,0 +1,16 @@
+[Unit]
+Description=MinerHome mhminer mining pool relay 
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/mhminer
+ExecStart=/root/mhminer/mhminer
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
