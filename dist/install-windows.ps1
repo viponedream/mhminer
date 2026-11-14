@@ -1,21 +1,22 @@
 ﻿# ============================================================
-# mhminer Windows 安装管理脚本 
+# mhminer Windows 安装管理脚本 v5 (六十五, 2026-11-14 用户指令: 交互菜单)
 #   - 零参数运行 = 交互菜单; 参数形态保留 (自动化)
 #   - 来源: GitHub 在线下载 dist/mhminer-windows-amd64-v<版本>.exe (版本发现 = API 文件名)
-#   - 三个动作: install / update [版本] / uninstall [-Purge]
+#   - 三个动作: install / update [版本] / uninstall
 #   - 安装目录: C:\mhminer (单文件发行立法: data/cert/key/logs 锚定 exe 同目录)
 #   - 开机自启: 任务计划程序 (SYSTEM, 最高权限); 防火墙程序全路径规则
+#   - 升级跨 schema: 自动 -migrate-db (幂等, 失败红即停)
+#   - 不铸造凭据: 默认 admin/admin + 首启提醒跳转机制照旧 (立法)
 # 用法:
 #   powershell -ExecutionPolicy Bypass -File install-windows.ps1                 # 交互菜单
 #   powershell -ExecutionPolicy Bypass -File install-windows.ps1 install         # 直接安装/更新
 #   powershell -ExecutionPolicy Bypass -File install-windows.ps1 update 1.0.2    # 指定版本
-#   powershell -ExecutionPolicy Bypass -File install-windows.ps1 uninstall [-Purge]
+#   powershell -ExecutionPolicy Bypass -File install-windows.ps1 uninstall
 # 网络: 国内环境请设置 https_proxy 环境变量或系统代理
 # ============================================================
 param(
     [string]$Action = "",
     [string]$Version = "",
-    [switch]$Purge,
     [string]$InstallDir = "C:\mhminer"
 )
 
@@ -33,7 +34,6 @@ if (-not (New-Object Security.Principal.WindowsPrincipal($id)).IsInRole([Securit
     Write-Host "[i] 需要管理员权限, 正在自提升..." -ForegroundColor Yellow
     $relaunch = @("-Action", $Action, "-InstallDir", $InstallDir)
     if ($Version) { $relaunch += @("-Version", $Version) }
-    if ($Purge)   { $relaunch += "-Purge" }
     Start-Process -FilePath $PSCommandPath -ArgumentList $relaunch -Verb RunAs
     exit 0
 }
@@ -128,7 +128,8 @@ function StartTask {
     Start-Sleep -Seconds 3
 }
 
-function Invoke-Uninstall([bool]$purge) {
+function Invoke-Uninstall {
+    # 六十六 用户裁决: 卸载 = 一律含数据 (卸载了就没必要保留数据)
     Info "卸载 mhminer..."
     RunNative { schtasks /end /tn $TaskName }
     RunNative { schtasks /delete /tn $TaskName /f }
@@ -136,11 +137,8 @@ function Invoke-Uninstall([bool]$purge) {
     RunNative { netsh advfirewall firewall delete rule name="mhminer-exe-in" }
     RunNative { netsh advfirewall firewall delete rule name="mhminer-exe-out" }
     Ok "任务计划 + 防火墙规则已移除"
-    if ($purge) {
-        if (Test-Path $InstallDir) { Remove-Item -Recurse -Force $InstallDir; Ok "已删除 $InstallDir (含数据)" }
-    } else {
-        Info "数据保留在 $InstallDir"
-    }
+    Remove-Item -Recurse -Force $InstallDir
+    Ok "已删除 $InstallDir (含数据)"
     Ok "卸载完成"
 }
 
@@ -184,8 +182,7 @@ function Show-MenuMain {
         Write-Host " 仓库最新版本: v$latest"
         Write-Host " 1) 安装 / 更新 (最新版本)"
         Write-Host " 2) 安装 / 更新 (指定版本)"
-        Write-Host " 3) 卸载 (保留数据)"
-        Write-Host " 4) 卸载并删除数据"
+        Write-Host " 3) 卸载"
         Write-Host " 0) 退出"
         $c = Read-Host "请选择"
         switch ($c) {
@@ -195,8 +192,7 @@ function Show-MenuMain {
                 if (-not $v) { Write-Host "[!] 版本号不能为空" -ForegroundColor Red }
                 else { Invoke-Install $v }
             }
-            "3" { Invoke-Uninstall $false }
-            "4" { Invoke-Uninstall $true }
+            "3" { Invoke-Uninstall }
             "0" { return }
             default { Write-Host "[!] 无效选择" -ForegroundColor Red }
         }
@@ -206,10 +202,10 @@ function Show-MenuMain {
 # --- 入口分发: 零参数 = 菜单 (用户指令); 参数 = 自动化形态 ---
 switch ($Action) {
     ""        { Show-MenuMain }
-    "uninstall" { Invoke-Uninstall ([bool]$Purge) }
+    "uninstall" { Invoke-Uninstall }
     default {
         if ($Action -ne "install" -and $Action -ne "update") {
-            Write-Host "[!] 未知动作: $Action (可用: install / update [版本] / uninstall [-Purge])" -ForegroundColor Red
+            Write-Host "[!] 未知动作: $Action (可用: install / update [版本] / uninstall)" -ForegroundColor Red
             exit 1
         }
         if (-not $Version) { $Version = Get-LatestVersion }

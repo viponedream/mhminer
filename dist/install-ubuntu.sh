@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 # ============================================================
-# mhminer Ubuntu/Debian 安装管理脚本  
+# mhminer Ubuntu/Debian 安装管理脚本 v5 (六十五, 2026-11-14 用户指令:
 # "安装,更新,卸载,由脚本里面提供选项, 用户只须运行 install-ubuntu.sh")
 #   - 零参数运行 = 交互菜单 (安装/更新/卸载选项); 参数形态保留 (自动化)
 #   - 来源: GitHub 在线下载 dist/mhminer-linux-amd64-v<版本>
 #   - 安装目录: /root/mhminer; root 直跑 (前置检查); systemd 开机自启
 #   - 随包 mhminer.service 优先, 缺失内联回落
+#   - 升级跨 schema: 自动 -migrate-db (幂等, 失败红即停)
+#   - journald = 有意审计道 (DS-M1 方案 B); 不铸造凭据 (admin/admin + 提醒跳转照旧)
 # 用法:
 #   sudo ./install-ubuntu.sh                  # 交互菜单
 #   sudo ./install-ubuntu.sh install [版本]   # 直接安装/更新 (缺省 = 最新)
-#   sudo ./install-ubuntu.sh uninstall [purge]
+#   sudo ./install-ubuntu.sh uninstall        # 卸载 (含数据)
 # 网络: 国内环境请设置 https_proxy 环境变量 (curl 走代理)
 # ============================================================
 set -euo pipefail
@@ -24,8 +26,8 @@ REMOTE_BASE="mhminer-linux-amd64"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 die()  { echo "[!] $*" >&2; exit 1; }
-info() { echo "[i] $*"; }
-ok()   { echo "[ok] $*"; }
+info() { echo "[i] $*" >&2; }
+ok()   { echo "[ok] $*" >&2; }
 
 # --- root 前置检查 (用户裁决: 是 root 才安装) ---
 if [ "$(id -u)" -ne 0 ]; then
@@ -96,18 +98,14 @@ EOF
 }
 
 do_uninstall() {
-    local purge="${1:-}"
+    # 六十六 用户裁决: 卸载 = 一律含数据 (卸载了就没必要保留数据)
     info "卸载 mhminer..."
     systemctl disable --now "$TASK" 2>/dev/null || true
     rm -f "$UNIT"
     systemctl daemon-reload
     ok "systemd 服务已移除"
-    if [ "$purge" = "purge" ]; then
-        rm -rf "$INSTALL_DIR"
-        ok "已删除 $INSTALL_DIR (含数据)"
-    else
-        info "数据保留在 $INSTALL_DIR (彻底删除: 菜单 4 / uninstall purge)"
-    fi
+    rm -rf "$INSTALL_DIR"
+    ok "已删除 $INSTALL_DIR (含数据)"
     ok "卸载完成"
 }
 
@@ -150,23 +148,21 @@ show_menu() {
     echo " 仓库最新版本: v$latest"
     echo " 1) 安装 / 更新 (最新版本)"
     echo " 2) 安装 / 更新 (指定版本)"
-    echo " 3) 卸载 (保留数据)"
-    echo " 4) 卸载并删除数据"
-    echo " 0) 退出"
+ echo " 3) 卸载"
+ echo " 0) 退出"
 }
 
 menu_loop() {
     while true; do
         show_menu
         local c ver
-        read -rp "请选择: " c || die "非交互环境请用参数形态 (install [版本] / uninstall [purge])"
+        read -rp "请选择: " c || die "非交互环境请用参数形态 (install [版本] / uninstall)"
         case "$c" in
             1) do_install "$(get_latest)" ;;
             2) read -rp "版本号 (如 1.0.1): " ver
                [ -n "$ver" ] || die "版本号不能为空"
                do_install "$ver" ;;
-            3) do_uninstall "" ;;
-            4) do_uninstall "purge" ;;
+            3) do_uninstall ;;
             0) exit 0 ;;
             *) echo "[!] 无效选择" ;;
         esac
@@ -176,7 +172,7 @@ menu_loop() {
 # --- 入口分发: 零参数 = 菜单 (用户指令); 参数 = 自动化形态 ---
 if [ $# -eq 0 ]; then
     if [ ! -t 0 ]; then
-        die "非交互环境请用参数形态: install [版本] / uninstall [purge]"
+        die "非交互环境请用参数形态: install [版本] / uninstall"
     fi
     menu_loop
     exit 0
@@ -184,7 +180,7 @@ fi
 
 case "$1" in
     install|update) do_install "${2:-$(get_latest)}" ;;
-    uninstall)      do_uninstall "${2:-}" ;;
+    uninstall)      do_uninstall ;;
     menu)           menu_loop ;;
-    *)              die "未知动作: $1 (可用: install [版本] / update [版本] / uninstall [purge] / menu)" ;;
+    *)              die "未知动作: $1 (可用: install [版本] / update [版本] / uninstall / menu)" ;;
 esac
