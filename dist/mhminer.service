@@ -1,5 +1,5 @@
 [Unit]
-Description=MinerHome mhminer mining pool relay 
+Description=MinerHome mhminer mining pool relay (single-file, exe-dir anchored)
 After=network-online.target
 Wants=network-online.target
 

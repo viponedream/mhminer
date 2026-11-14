@@ -1,25 +1,20 @@
 ﻿# ============================================================
-# mhminer Windows 安装脚本 v2 (六十三, 2026-11-14 用户指令: 在线下载形态)
-#   - 来源: GitHub 在线下载 (bin/<版本>/mhminer-windows-amd64.exe)
-#   - 三个动作: install (安装/升级同词) / update [版本] (更新) / uninstall [-Purge] (卸载)
+# mhminer Windows 安装管理脚本 
+#   - 零参数运行 = 交互菜单; 参数形态保留 (自动化)
+#   - 来源: GitHub 在线下载 dist/mhminer-windows-amd64-v<版本>.exe (版本发现 = API 文件名)
+#   - 三个动作: install / update [版本] / uninstall [-Purge]
 #   - 安装目录: C:\mhminer (单文件发行立法: data/cert/key/logs 锚定 exe 同目录)
-#   - 开机自启: 任务计划程序 (SYSTEM, 最高权限) —— 裸控制台程序不识别 SCM 协议,
-#     sc.exe 注册的服务起不来; 不引 NSSM/WinSW 第三方包装 (单文件立法)
-#   - 防火墙: 程序全路径规则 (入+出) —— 免弹窗实测形态
-#   - 升级跨 schema: 更新后自动执行 -migrate-db (存量库唯一升级通道, 立法; 幂等,
-#     已是最新 = "零迁移" exit 0), 失败红即停
-#   - 不铸造凭据: 默认 admin/admin + 首启提醒跳转机制照旧 (立法)
+#   - 开机自启: 任务计划程序 (SYSTEM, 最高权限); 防火墙程序全路径规则
 # 用法:
-#   powershell -ExecutionPolicy Bypass -File install-windows.ps1                 # 安装 (默认版本)
-#   powershell -ExecutionPolicy Bypass -File install-windows.ps1 update          # 更新到默认版本
-#   powershell -ExecutionPolicy Bypass -File install-windows.ps1 update 1.0.2    # 更新到指定版本
-#   powershell -ExecutionPolicy Bypass -File install-windows.ps1 uninstall       # 卸载 (保留数据)
-#   powershell -ExecutionPolicy Bypass -File install-windows.ps1 uninstall -Purge # 卸载并删数据
-# 网络: 国内环境请设置 https_proxy 环境变量或系统代理 (下载走系统代理)
+#   powershell -ExecutionPolicy Bypass -File install-windows.ps1                 # 交互菜单
+#   powershell -ExecutionPolicy Bypass -File install-windows.ps1 install         # 直接安装/更新
+#   powershell -ExecutionPolicy Bypass -File install-windows.ps1 update 1.0.2    # 指定版本
+#   powershell -ExecutionPolicy Bypass -File install-windows.ps1 uninstall [-Purge]
+# 网络: 国内环境请设置 https_proxy 环境变量或系统代理
 # ============================================================
 param(
-    [Parameter(Position = 0)][string]$Action = "install",
-    [Parameter(Position = 1)][string]$Version = "",
+    [string]$Action = "",
+    [string]$Version = "",
     [switch]$Purge,
     [string]$InstallDir = "C:\mhminer"
 )
@@ -27,29 +22,26 @@ param(
 $ErrorActionPreference = "Stop"
 $TaskName = "mhminer"
 $Exe = Join-Path $InstallDir "mhminer.exe"
-
-# 六十三 v4 (用户裁决 "latest.json 多余, 版本号通过文件名就知道"): 版本发现 = GitHub API
-# 列仓库 dist/ 目录 → 平台带版本名 → 版本号取最大; 下载 = 平铺 dist/<带版本名>。
-# API 不可达/限流 (无鉴权 60 次/时) 回落脚本内置默认。
 $DefaultVersion = "1.0.1"
 $BaseRoot = "https://raw.githubusercontent.com/viponedream/mhminer/main/dist"
 $ApiUrl = "https://api.github.com/repos/viponedream/mhminer/contents/dist"
 $RemoteBase = "mhminer-windows-amd64"
 
-# --- 管理员权限检测 (不足则自提升 UAC 重跑) ---
+# --- 管理员权限检测 (不足则自提升 UAC 重跑, 参数透传) ---
 $id = [Security.Principal.WindowsIdentity]::GetCurrent()
 if (-not (New-Object Security.Principal.WindowsPrincipal($id)).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
     Write-Host "[i] 需要管理员权限, 正在自提升..." -ForegroundColor Yellow
-    Start-Process -FilePath $PSCommandPath -ArgumentList $args -Verb RunAs
+    $relaunch = @("-Action", $Action, "-InstallDir", $InstallDir)
+    if ($Version) { $relaunch += @("-Version", $Version) }
+    if ($Purge)   { $relaunch += "-Purge" }
+    Start-Process -FilePath $PSCommandPath -ArgumentList $relaunch -Verb RunAs
     exit 0
 }
 
 function Info($m) { Write-Host "[i] $m" -ForegroundColor Cyan }
 function Ok($m)   { Write-Host "[ok] $m" -ForegroundColor Green }
 
-# RunNative 原生命令执行辅助: PS5.1 已知坑 —— $ErrorActionPreference='Stop' 时
-# native 命令 stderr (即使 2>$null) 会作为 terminating error 抛出。
-# 解法 = 执行期间临时降级 Continue (stderr 静默), 恢复后按需红即停 ($LASTEXITCODE)。
+# RunNative: PS5.1 坑规避 —— EAP='Stop' 下 native stderr (即使 2>$null) terminating 抛出
 function RunNative([scriptblock]$Block, [switch]$Check) {
     $prev = $ErrorActionPreference
     $ErrorActionPreference = "Continue"
@@ -63,12 +55,11 @@ function RunNative([scriptblock]$Block, [switch]$Check) {
 }
 
 function StopByPath($p) {
-    # 按完整路径精确终止 (立法: 严禁按镜像名 taskkill —— 误杀同名多实例)
     Get-Process mhminer -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq $p } | Stop-Process -Force
 }
 
 # Get-LatestVersion 版本发现 (六十三 v4): GitHub API 列 dist/ → 平台带版本名 →
-# 版本号取最大 ([version] 数值比较, 防词典序 1.0.10 < 1.0.9); 不可达回落内置默认。
+# 版本号取最大 ([version] 数值比较); 不可达/限流回落内置默认
 function Get-LatestVersion {
     try {
         $ProgressPreference = "SilentlyContinue"
@@ -137,8 +128,7 @@ function StartTask {
     Start-Sleep -Seconds 3
 }
 
-# ---------------- uninstall ----------------
-if ($Action -eq "uninstall") {
+function Invoke-Uninstall([bool]$purge) {
     Info "卸载 mhminer..."
     RunNative { schtasks /end /tn $TaskName }
     RunNative { schtasks /delete /tn $TaskName /f }
@@ -146,48 +136,84 @@ if ($Action -eq "uninstall") {
     RunNative { netsh advfirewall firewall delete rule name="mhminer-exe-in" }
     RunNative { netsh advfirewall firewall delete rule name="mhminer-exe-out" }
     Ok "任务计划 + 防火墙规则已移除"
-    if ($Purge) {
+    if ($purge) {
         if (Test-Path $InstallDir) { Remove-Item -Recurse -Force $InstallDir; Ok "已删除 $InstallDir (含数据)" }
     } else {
-        Info "数据保留在 $InstallDir (彻底删除请加 -Purge)"
+        Info "数据保留在 $InstallDir"
     }
     Ok "卸载完成"
-    exit 0
 }
 
-# ---------------- install / update ----------------
-if ($Action -ne "install" -and $Action -ne "update") {
-    Write-Host "[!] 未知动作: $Action (可用: install / update [版本] / uninstall [-Purge])" -ForegroundColor Red
-    exit 1
+function Invoke-Install([string]$ver) {
+    $tmp = Download-Mhminer $ver
+
+    Info "停止运行中的实例..."
+    StopAll
+
+    Info "部署二进制 v$ver → $Exe ..."
+    New-Item -ItemType Directory -Force -Path $InstallDir | Out-Null
+    Copy-Item -Force $tmp $Exe
+    Remove-Item -Force $tmp -ErrorAction SilentlyContinue
+    Ok "二进制就位"
+
+    EnsureFirewall
+    EnsureTask
+
+    Info "数据底座 schema 迁移检查 (-migrate-db, 幂等)..."
+    RunNative { & $Exe -migrate-db } -Check
+
+    Info "立即启动..."
+    StartTask
+
+    Ok "================= 完成 (v$ver) ================="
+    Ok "安装目录: $InstallDir (data/cert/logs 锚定于此)"
+    Ok "开机自启: 任务计划 $TaskName (SYSTEM)"
+    Ok "后台:     http://<本机IP>:8888  (默认 admin/admin, 登录后请立即修改)"
+    Ok "日志:     控制台无窗口 (SYSTEM 会话); 文件日志请进后台设置 log_file"
+    try {
+        Info "当前凭据 (-show-credentials):"
+        & $Exe -show-credentials
+    } catch { Info "凭据查询跳过 ($($_.Exception.Message))" }
 }
-if (-not $Version) { $Version = Get-LatestVersion; Info "发现最新版本: v$Version" }
 
-$tmp = Download-Mhminer $Version
+function Show-MenuMain {
+    while ($true) {
+        $latest = Get-LatestVersion
+        Write-Host ""
+        Write-Host "================= mhminer 管理脚本 (Windows) ================="
+        Write-Host " 仓库最新版本: v$latest"
+        Write-Host " 1) 安装 / 更新 (最新版本)"
+        Write-Host " 2) 安装 / 更新 (指定版本)"
+        Write-Host " 3) 卸载 (保留数据)"
+        Write-Host " 4) 卸载并删除数据"
+        Write-Host " 0) 退出"
+        $c = Read-Host "请选择"
+        switch ($c) {
+            "1" { Invoke-Install $latest }
+            "2" {
+                $v = Read-Host "版本号 (如 1.0.1)"
+                if (-not $v) { Write-Host "[!] 版本号不能为空" -ForegroundColor Red }
+                else { Invoke-Install $v }
+            }
+            "3" { Invoke-Uninstall $false }
+            "4" { Invoke-Uninstall $true }
+            "0" { return }
+            default { Write-Host "[!] 无效选择" -ForegroundColor Red }
+        }
+    }
+}
 
-Info "停止运行中的实例..."
-StopAll
-
-Info "部署二进制 v$Version → $Exe ..."
-New-Item -ItemType Directory -Force -Path $InstallDir | Out-Null
-Copy-Item -Force $tmp $Exe
-Remove-Item -Force $tmp -ErrorAction SilentlyContinue
-Ok "二进制就位"
-
-EnsureFirewall
-EnsureTask
-
-Info "数据底座 schema 迁移检查 (-migrate-db, 幂等)..."
-RunNative { & $Exe -migrate-db } -Check
-
-Info "立即启动..."
-StartTask
-
-Ok "================= $Action 完成 (v$Version) ================="
-Ok "安装目录: $InstallDir (data/cert/logs 锚定于此)"
-Ok "开机自启: 任务计划 $TaskName (SYSTEM)"
-Ok "后台:     http://<本机IP>:8888  (默认 admin/admin, 登录后请立即修改)"
-Ok "日志:     控制台无窗口 (SYSTEM 会话); 文件日志请进后台设置 log_file"
-try {
-    Info "当前凭据 (-show-credentials):"
-    & $Exe -show-credentials
-} catch { Info "凭据查询跳过 ($($_.Exception.Message))" }
+# --- 入口分发: 零参数 = 菜单 (用户指令); 参数 = 自动化形态 ---
+switch ($Action) {
+    ""        { Show-MenuMain }
+    "uninstall" { Invoke-Uninstall ([bool]$Purge) }
+    default {
+        if ($Action -ne "install" -and $Action -ne "update") {
+            Write-Host "[!] 未知动作: $Action (可用: install / update [版本] / uninstall [-Purge])" -ForegroundColor Red
+            exit 1
+        }
+        if (-not $Version) { $Version = Get-LatestVersion }
+        Info "发现最新版本: v$Version"
+        Invoke-Install $Version
+    }
+}
