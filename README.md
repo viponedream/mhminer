@@ -15,29 +15,16 @@
 不明白可以联系群主QQ 248135618
 
 
-##### 开发者抽水,  千3 - 带webui
+##### 开发者抽水,  千1
 
-&nbsp; 香港服务器上执行一键安装脚本 (ubuntu20)
+&nbsp; 香港服务器上执行一键安装脚本 (ubuntu)
 ```
 apt install curl
 
-bash <(curl -s -L https://raw.githubusercontent.com/viponedream/mhminer/main/scripts/inst_rust.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/viponedream/mhminer/main/dist/install-ubuntu.sh)
 
 ```
 
-
-
-
-##### 开发者抽水,  千1 - 纯后台，无UI
-进服务器后台修改配置文件,  /root/mhminer/config.yml, 有默认配置文件可供参考,修改.
-
-&nbsp; 香港服务器上执行一键安装脚本 (ubuntu20)
-```
-apt install curl
-
-bash <(curl -s -L https://raw.githubusercontent.com/viponedream/mhminer/main/scripts/inst_cn.sh)
-
-```
 
 
 
